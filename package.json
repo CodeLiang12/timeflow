@@ -1,0 +1,12 @@
+{
+  "name": "timeflow-planner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Samuel",
+  "license": "ISC"
+}

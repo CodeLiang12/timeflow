@@ -1,0 +1,35 @@
+{
+  "name": "@timeflow/web",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "vite build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@timeflow/types": "workspace:^",
+    "@ant-design/icons": "catalog:",
+    "@reduxjs/toolkit": "catalog:",
+    "@ant-design/v5-patch-for-react-19": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-icons": "catalog:",
+    "antd": "catalog:",
+    "clsx": "catalog:",
+    "react-redux": "catalog:"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "@types/react-redux": "catalog:",
+    "autoprefixer": "catalog:",
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}

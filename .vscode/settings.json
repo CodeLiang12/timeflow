@@ -1,0 +1,13 @@
+{
+  "cSpell.ignoreWords": [
+    "Topbar",
+    "antd",
+    "autoprefixer",
+    "clsx",
+    "reduxjs",
+    "timeflow",
+    "vite",
+    "vitejs"
+  ],
+  "liveServer.settings.port": 5501
+}
