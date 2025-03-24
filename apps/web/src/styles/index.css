@@ -2,15 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 自定义全局样式 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+}
+
+:root {
+  --primary-color: #1677ff;
+  --primary-color-light: #e9efff;
+  --secondary-color: #3f37c9;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --danger-color: #f44336;
+  --success-bg-color: #f0fff0;
+  --warning-bg-color: #fff8e6;
+  --danger-bg-color: #fff0f0;
+  --danger-mid-color: #fbb3ae;
+  --warning-mid-color: #ffcf8c;
+  --success-mid-color: #a8dba9;
+  --base-text-color: #333;
+  --text-light: #666;
+  --base-border-color: #e1e4e8;
+  --bg-color: #f8f9fa;
+  --timeline-bg: #f5f7fa;
+}
+
+/* Transition */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.fade-enter-done {
+  opacity: 1;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}
+.fade-exit-done {
+  opacity: 0;
 }

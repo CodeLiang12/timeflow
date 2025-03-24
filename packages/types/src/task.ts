@@ -3,7 +3,7 @@ export interface BaseTask {
   title: string;
   description?: string;
   priority: "high" | "medium" | "low";
-  estimatedTime: number; // 小时
+  estimatedTime?: number; // 小时
   startTime: string; // ISO 日期字符串
   endTime: string; // ISO 日期字符串
   status: "pending" | "completed";

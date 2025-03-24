@@ -1,15 +1,17 @@
 import TaskItem from "@/components/ui/TaskItem";
 import { Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { useAppSelector } from "@/stores/hooks";
+import { useAppSelector, useAppDispatch } from "@/stores/hooks";
 import emptyTask from "@/assets/empty-task.svg";
 import { useRef, useState } from "react";
 import { Modal } from "antd";
 import AddTaskFrom, { AddTaskFormRef } from "@/components/ui/AddTaskForm";
+import { addTask } from "@/stores/taskSlice";
 
 export default function Sidebar() {
   const [isShowAddTaskModal, setIsShowAddTaskModal] = useState(false);
   const tasks = useAppSelector((state) => state.tasks.tasks);
+  const dispatch = useAppDispatch()
 
   const formRef = useRef<AddTaskFormRef>(null);
 
@@ -21,6 +23,7 @@ export default function Sidebar() {
     try {
       const values = await formRef.current?.getFormValues();
       console.log("add task", values);
+      dispatch(addTask(values))
       setIsShowAddTaskModal(false);
     } catch (error) {
       console.log(error);
@@ -32,7 +35,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-[300px] bg-white pt-[20px] border-r flex flex-col">
+    <div className="min-w-[300px] h-full bg-white pt-[20px] border-r flex flex-col">
       <div className="w-full flex justify-between px-[20px] items-center pb-[10px]">
         <p className="text-xl font-bold">任务列表</p>
         <Button
@@ -43,7 +46,7 @@ export default function Sidebar() {
           新建
         </Button>
       </div>
-      <div className="w-full px-[20px] flex-1 overflow-y-auto">
+      <div className="w-full px-[20px] pb-[20px] flex-1 overflow-y-auto">
         {tasks.map((task) => (
           <TaskItem
             key={task.id}

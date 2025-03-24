@@ -12,6 +12,10 @@ export default defineConfig({
     },
   },
 
+  server: {
+    port: 7344
+  },
+
   css: {
     postcss: {
       plugins: [tailwindcss, autoprefixer()],

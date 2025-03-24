@@ -23,3 +23,5 @@ catalog:
   antd: ^5.24.4
   clsx: ^2.1.1
   react-redux: ^9.2.0
+  framer-motion: ^12.5.0
+  dayjs: ^1.11.13

@@ -13,6 +13,10 @@
       filter: drop-shadow(30px 25px 0 currentColor) drop-shadow(60px 0 0 currentColor) drop-shadow(120px 0 0 currentColor);
       clip-path: inset(0 100% 0 0);
       animation: l11 2s infinite steps(7);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     .loader:before {
       content: "";
@@ -27,7 +31,7 @@
     </style>
   </head>
   <body>
-    <div id="root" class="w-screen h-screen overflow-y-auto">
+    <div id="root" class="w-screen h-screen relative overflow-y-auto">
       <div class="loader"></div>
     </div>
     <script type="module" src="/src/main.tsx"></script>

@@ -9,15 +9,30 @@ export interface AddTaskFormProps {
   ref: React.Ref<AddTaskFormRef>;
 }
 
+interface AddTaskFormState {
+  title: string;
+  description: string;
+  time?: [Date, Date];
+  priority: string;
+  startTime: string;
+  endTime: string;
+}
+
 const { TextArea } = Input;
 const { RangePicker } = DatePicker;
 export default function AddTaskForm({ ref }: AddTaskFormProps) {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<AddTaskFormState>();
 
   useImperativeHandle(ref, () => ({
     getFormValues: async () => {
       try {
         const values = await form.validateFields();
+        if (values.time) {
+          const [startTime, endTime] = values.time
+          values.startTime = startTime.toISOString()
+          values.endTime = endTime.toISOString()
+        }
+        delete values.time
         return values;
       } catch (error) {
         throw error;

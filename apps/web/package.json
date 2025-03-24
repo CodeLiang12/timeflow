@@ -18,7 +18,9 @@
     "react-icons": "catalog:",
     "antd": "catalog:",
     "clsx": "catalog:",
-    "react-redux": "catalog:"
+    "react-redux": "catalog:",
+    "framer-motion": "catalog:",
+    "dayjs": "catalog:"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "catalog:",

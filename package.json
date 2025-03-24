@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "Samuel",
-  "license": "ISC"
+  "license": "ISC",
+  "packageManager": "pnpm@9.15.2"
 }
