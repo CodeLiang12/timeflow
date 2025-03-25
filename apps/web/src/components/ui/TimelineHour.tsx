@@ -4,7 +4,7 @@ const allHours = Array.from({ length: 24 }, (_, index) => {
 
 export default function TimelineHour() {
   return (
-    <div className="min-w-[2160px] bg-white border-b flex items-center justify-start relative">
+    <div className="min-w-[2160px] bg-white flex items-center justify-start relative">
       {allHours.map((hour) => (
         <div 
           key={hour} 

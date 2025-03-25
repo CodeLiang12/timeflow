@@ -25,3 +25,4 @@ catalog:
   react-redux: ^9.2.0
   framer-motion: ^12.5.0
   dayjs: ^1.11.13
+  vitest: ^3.0.9
