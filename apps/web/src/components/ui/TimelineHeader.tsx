@@ -1,16 +1,18 @@
 import { TimelineComponent } from "../layout/Timeline";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, DatePicker } from "antd";
 import dayjs from "dayjs";
 
 interface TimelineHeaderProps {
   type: TimelineComponent;
   setComponent: (type: TimelineComponent) => void;
+  changeCurrent: (type: "left" | "right") => void;
 }
 
 export default function TimelineHeader({
   type,
   setComponent,
+  changeCurrent
 }: TimelineHeaderProps) {
   const options: { value: TimelineComponent; label: string }[] = [
     { value: "Day", label: "日" },
@@ -58,11 +60,13 @@ export default function TimelineHeader({
         <Button
           icon={<LeftOutlined />}
           className="border-none mx-[25px]"
+          onClick={() => changeCurrent('left')}
         ></Button>
-        <p>{dayjs().format("YYYY年M月DD日")}</p>
+        <DatePicker defaultValue={dayjs()} format={'YYYY年MM月DD日'} allowClear={ false } />
         <Button
           icon={<RightOutlined />}
           className="border-none mx-[25px]"
+          onClick={() => changeCurrent('right')}
         ></Button>
         <Button
           type="primary"

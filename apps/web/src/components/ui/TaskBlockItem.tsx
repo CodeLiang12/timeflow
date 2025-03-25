@@ -1,5 +1,7 @@
 import TaskBlock from "@/utils/taskBlock";
 import type { Task } from "@timeflow/types";
+import ArrowRight from '@/assets/arrow-right.svg'
+import ArrowLeft from '@/assets/arrow-left.svg'
 
 const PriorityColor: Record<Task["priority"], string> = {
   high: "danger",
@@ -10,9 +12,10 @@ const PriorityColor: Record<Task["priority"], string> = {
 interface TaskBlockProps {
   taskBlock: TaskBlock;
   index: number;
+  setToday: (date: string) => void;
 }
 
-export default function TaskBlockItem({ taskBlock, index }: TaskBlockProps) {
+export default function TaskBlockItem({ taskBlock, index, setToday }: TaskBlockProps) {
   return (
     <div
       key={taskBlock.id}
@@ -32,7 +35,15 @@ export default function TaskBlockItem({ taskBlock, index }: TaskBlockProps) {
           taskBlock.diffDays > 0 && "border-dashed"
         }`}
       >
+        {
+          taskBlock.showPreIcon &&
+          <img src={ArrowLeft} className="absolute left-3" onClick={()=>setToday(taskBlock.startTime)}></img>
+        }
         <p>{taskBlock.title}</p>
+        {
+          taskBlock.showNextIcon &&
+          <img src={ArrowRight} className="absolute right-3" onClick={()=>setToday(taskBlock.endTime)}></img>
+        }
       </div>
     </div>
   );
