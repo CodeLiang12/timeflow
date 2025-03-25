@@ -45,20 +45,22 @@ export default function DayTimeline({
   };
 
   return (
-    <div className="min-w-[2200px] flex flex-col h-full p-[15px] pb-0 pr-0 relative bg-white shadow-md rounded-md">
-      <TimelineHour />
-      <div className="flex-1 w-[calc(100% + 20px)] pr-[10px] overflow-y-scroll">
-        <div className="w-full py-[15px] flex flex-col justify-start">
-          {taskBlocks.map((taskBlock, index) => {
-            return (
-              <TaskBlockItem
-                key={taskBlock.id}
-                taskBlock={taskBlock}
-                index={index}
-                setToday={handleToday}
-              />
-            );
-          })}
+    <div className="w-full h-full overflow-x-scroll overflow-y-hidden">
+      <div className="min-w-[2190px] flex flex-col h-full relative bg-white">
+        <TimelineHour />
+        <div className="flex-1 pr-[15px] overflow-y-scroll">
+          <div className="w-full py-[15px] flex flex-col justify-start">
+            {taskBlocks.map((taskBlock, index) => {
+              return (
+                <TaskBlockItem
+                  key={taskBlock.id}
+                  taskBlock={taskBlock}
+                  index={index}
+                  setToday={handleToday}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
