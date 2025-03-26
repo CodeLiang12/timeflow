@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { Task } from "@timeflow/types";
-import { mockTasks } from "@/mock/index";
+import { mockTasks, mockTasks2 } from "@/mock/index";
 
 interface TaskState {
   tasks: Task[];

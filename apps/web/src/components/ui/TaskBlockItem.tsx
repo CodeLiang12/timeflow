@@ -2,6 +2,7 @@ import TaskBlock from "@/utils/taskBlock";
 import type { Task } from "@timeflow/types";
 import ArrowRight from '@/assets/arrow-right.svg'
 import ArrowLeft from '@/assets/arrow-left.svg'
+import { useRef, useState } from "react";
 
 const PriorityColor: Record<Task["priority"], string> = {
   high: "danger",
@@ -16,6 +17,16 @@ interface TaskBlockProps {
 }
 
 export default function TaskBlockItem({ taskBlock, index, setToday }: TaskBlockProps) {
+  const [isDragging, setIsDragging] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
+  const longPressTimerRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    // console.log
+    console.log(e.clientX, e.clientY)
+  }
+
   return (
     <div
       key={taskBlock.id}
@@ -33,7 +44,8 @@ export default function TaskBlockItem({ taskBlock, index, setToday }: TaskBlockP
         }}
         className={`h-[40px] top-[5px] text-white border rounded-md absolute text-ellipsis overflow-hidden whitespace-nowrap flex items-center justify-center ${
           taskBlock.diffDays > 0 && "border-dashed"
-        }`}
+          }`}
+        onMouseDown={handleMouseDown}
       >
         {
           taskBlock.showPreIcon &&

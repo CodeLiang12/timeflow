@@ -5,14 +5,16 @@ import dayjs from "dayjs";
 
 interface TimelineHeaderProps {
   type: TimelineComponent;
+  currentDate: string;
   setComponent: (type: TimelineComponent) => void;
   changeCurrent: (type: "left" | "right") => void;
 }
 
 export default function TimelineHeader({
   type,
+  currentDate,
   setComponent,
-  changeCurrent
+  changeCurrent,
 }: TimelineHeaderProps) {
   const options: { value: TimelineComponent; label: string }[] = [
     { value: "Day", label: "日" },
@@ -62,7 +64,7 @@ export default function TimelineHeader({
           className="border-none mx-[25px]"
           onClick={() => changeCurrent('left')}
         ></Button>
-        <DatePicker defaultValue={dayjs()} format={'YYYY年MM月DD日'} allowClear={ false } />
+        <DatePicker defaultValue={dayjs(currentDate)} format={'YYYY年MM月DD日'} allowClear={ false } />
         <Button
           icon={<RightOutlined />}
           className="border-none mx-[25px]"
