@@ -40,8 +40,8 @@ class TaskBlock {
     const { startTime, endTime, diffDays } = handleTime(start, end);
     const startHour = startTime.split(":")[0];
     const endHour = endTime.split(":")[0];
-    this.startLeft = checkIsToday(start, this.showDate) ? +startHour * 90 + 45: 0;
-    this.endLeft = checkIsToday(end, this.showDate) ? +endHour * 90 + 45 : 2160;
+    this.startLeft = checkIsToday(start, this.showDate) ? +startHour * 90 + 45: 45;
+    this.endLeft = checkIsToday(end, this.showDate) ? +endHour * 90 + 45 : 2115;
     this.diffDays = diffDays;
     this.showPreIcon = diffDays > 0 && this.startLeft === 0;
     this.showNextIcon = diffDays > 0 && this.endLeft === 2160;
