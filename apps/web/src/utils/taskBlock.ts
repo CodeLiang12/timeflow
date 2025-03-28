@@ -1,5 +1,8 @@
 import type { Task } from "@timeflow/types";
 import { handleTime } from "./index";
+import { HOUR_WIDTH, allHours } from '@/components/ui/TimelineHour'
+
+const SNAP_DISTANCE = 15
 
 interface TaskBlockOption {
   task: Task;
@@ -40,13 +43,51 @@ class TaskBlock {
     const { startTime, endTime, diffDays } = handleTime(start, end);
     const startHour = startTime.split(":")[0];
     const endHour = endTime.split(":")[0];
-    this.startLeft = checkIsToday(start, this.showDate) ? +startHour * 90 + 45: 45;
-    this.endLeft = checkIsToday(end, this.showDate) ? +endHour * 90 + 45 : 2115;
+    this.startLeft = checkIsToday(start, this.showDate) ? +startHour * HOUR_WIDTH + 45: 45;
+    this.endLeft = checkIsToday(end, this.showDate) ? +endHour * HOUR_WIDTH + 45 : 2115;
     this.diffDays = diffDays;
-    this.showPreIcon = diffDays > 0 && this.startLeft === 0;
-    this.showNextIcon = diffDays > 0 && this.endLeft === 2160;
+    this.showPreIcon = diffDays > 0 && this.startLeft === 45;
+    this.showNextIcon = diffDays > 0 && this.endLeft === 2115;
     this.width = this.endLeft - this.startLeft;
   }
+
+  setLeft(left: number) {
+    this.startLeft = adsorption(left)
+    this.width = this.endLeft - this.startLeft
+  }
+
+  setDragedLeft(deltaX: number) {
+    this.startLeft = this.startLeft + deltaX
+  }
+
+  setPosition() {
+    this.startLeft = setPosition(this.startLeft)
+  }
+}
+
+function adsorption(position: number) {
+  let result = position
+  allHours.forEach((_, index) => {
+    const left = index * HOUR_WIDTH + 45
+    if (Math.abs(position - left) < SNAP_DISTANCE) {
+      result = left
+    }
+  })
+  return result
+}
+
+function setPosition(position: number) {
+  let distance = Infinity
+  let currentIndex = 0
+  allHours.forEach((_, index) => {
+    const left = index * HOUR_WIDTH + 45
+    if (Math.abs(position - left) < distance) {
+      distance = Math.abs(position - left)
+      currentIndex = index
+    }
+  })
+  console.log(distance, 'distance')
+  return currentIndex * HOUR_WIDTH + 45
 }
 
 function checkIsToday(dateString: string, showDate: string): boolean {
