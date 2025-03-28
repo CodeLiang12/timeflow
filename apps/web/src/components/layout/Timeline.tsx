@@ -61,6 +61,7 @@ export default function Timeline() {
     <div className="w-full h-full bg-timelineBg p-[20px] flex flex-col">
       <TimelineHeader
         type={component}
+        currentDate={currentDate}
         setComponent={handleSetComponent}
         changeCurrent={handleSetCurrentDate}
       />

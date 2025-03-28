@@ -1,6 +1,8 @@
-const allHours = Array.from({ length: 24 }, (_, index) => {
+export const allHours = Array.from({ length: 24 }, (_, index) => {
   return index > 9 ? index : `0${index}`
 })
+
+export const HOUR_WIDTH = 90
 
 export default function TimelineHour() {
   return (

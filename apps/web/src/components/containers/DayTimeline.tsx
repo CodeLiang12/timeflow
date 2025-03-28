@@ -1,9 +1,9 @@
-import TimelineHour from "../ui/TimelineHour";
+import TimelineHour, { HOUR_WIDTH } from "../ui/TimelineHour";
 import { mockTasks2 } from "@/mock/index";
 import TaskBlock from "@/utils/taskBlock";
 import TaskBlockItem from "../ui/TaskBlockItem";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface DayTimelineProps {
   currentDate: string;
@@ -15,7 +15,13 @@ export default function DayTimeline({
   setCurrentDate,
 }: DayTimelineProps) {
   const [taskBlocks, setTaskBlocks] = useState<TaskBlock[]>([]);
+  const [alignmentLine, setAlignmentLine] = useState<{ visible: boolean, position: number }>({ 
+    visible: false, 
+    position: 0 
+  });
+  const timelineRef = useRef<HTMLDivElement>(null);
 
+  // 获取当前日期的任务
   useEffect(() => {
     const filteredTasks = mockTasks2
       .filter((task) => {
@@ -44,10 +50,23 @@ export default function DayTimeline({
     setCurrentDate(dateFormat);
   };
 
+  const handleShowAlignmentLine = (position: number | null) => {
+    if(!position) {
+      setAlignmentLine({ visible: false, position: 0 });
+      return;
+    }
+    setAlignmentLine({ visible: true, position });
+  }
+
   return (
     <div className="w-full h-full overflow-x-scroll overflow-y-hidden">
-      <div className="min-w-[2190px] flex flex-col h-full relative bg-white">
+      <div className="min-w-[2190px] flex flex-col h-full relative bg-white" ref={timelineRef}>
         <TimelineHour />
+        {/* 对齐线 */}
+        {
+          alignmentLine.visible &&
+          <div className="w-[2px] absolute top-[25px] h-full z-20 bg-blue-300" style={{left: alignmentLine.position + 'px'}}></div>
+        }
         <div className="flex-1 pr-[15px] overflow-y-scroll">
           <div className="w-full py-[15px] flex flex-col justify-start">
             {taskBlocks.map((taskBlock, index) => {
@@ -56,7 +75,9 @@ export default function DayTimeline({
                   key={taskBlock.id}
                   taskBlock={taskBlock}
                   index={index}
+                  timelineRef={timelineRef}
                   setToday={handleToday}
+                  onShowAlignmentLine={handleShowAlignmentLine}
                 />
               );
             })}
